@@ -22,7 +22,6 @@ func PrintBanners(banners, arr []string) {
 
 			}
 			fmt.Println()
-
 		}
 	}
 }

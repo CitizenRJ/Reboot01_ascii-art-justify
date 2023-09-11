@@ -55,7 +55,6 @@ func PrintBannersWithColors(Str, colors string, banners, arr []string) {
 				count := 0
 				match := false
 				for _, j := range ch {
-					
 					if !match || count >= len(Str) {
 						h = h + 1
 					}

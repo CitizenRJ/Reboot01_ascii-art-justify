@@ -134,7 +134,6 @@ func main() {
 		ArgsLen = len(haha)
 		Str = ""
 	} else if ArgsLen == 0 && Str == "" {
-		
 		haha = append(haha, os.Args[1])
 		haha = append(haha, "standard")
 		ArgsLen = len(haha)

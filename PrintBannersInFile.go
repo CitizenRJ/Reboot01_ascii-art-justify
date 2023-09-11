@@ -31,7 +31,6 @@ func PrintBannersInFile(outputFileName string, banners, arr []string) {
 			for _, j := range ch {
 				n := (j-32)*9 + 1
 				fmt.Fprint(writer, arr[int(n)+i])
-
 			}
 			fmt.Fprintln(writer, "")
 		}

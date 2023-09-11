@@ -1,11 +1,11 @@
-package asciiArtColor
+package asciiArtJustify
 
 import (
 	"fmt"
 	"strings"
 )
 
-// Print the full outcome in the triminal
+// Print the full outcome in the terminal
 func PrintBannersWithColors(Str, colors string, banners, arr []string) {
 	// fmt.Println(banners[9])
 	colors = strings.ToLower(colors)
@@ -15,7 +15,7 @@ func PrintBannersWithColors(Str, colors string, banners, arr []string) {
 	HSL := "hsl"
 	// ANSI := "\\033["
 	ANSICheck := false
-	// ResestColor := "\\033[0m"
+	// ResetColor := "\\033[0m"
 	var color []string
 	//this one for RGP to ansi nums.
 	if strings.HasPrefix(colors, RGB) {
@@ -58,23 +58,23 @@ func PrintBannersWithColors(Str, colors string, banners, arr []string) {
 					if !match || count >= len(Str) {
 						h = h + 1
 					}
-					
+
 					check := true
 					n := (j-32)*9 + 1
 					for q := 0; q < len(Str); q++ {
-							if rune(Str[q]) == j {
-								word := ch
-								if count < len(Str) {
-									if Str == word[h-1:h+len(Str)-1] || (match && count < len(Str)) {
-										match = true
-										count = count + 1
-										// if {
-										fmt.Print(colors, arr[int(n)+i])
-										check = false
-									}
-									break
+						if rune(Str[q]) == j {
+							word := ch
+							if count < len(Str) {
+								if Str == word[h-1:h+len(Str)-1] || (match && count < len(Str)) {
+									match = true
+									count = count + 1
+									// if {
+									fmt.Print(colors, arr[int(n)+i])
+									check = false
 								}
+								break
 							}
+						}
 					}
 					if check == true {
 						fmt.Print("\033[0m", arr[int(n)+i])

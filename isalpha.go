@@ -1,4 +1,4 @@
-package asciiArtColor
+package asciiArtJustify
 
 func IsAlpha(s string) bool {
 	for _, w := range s {

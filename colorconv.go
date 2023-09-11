@@ -1,4 +1,4 @@
-package asciiArtColor
+package asciiArtJustify
 
 import (
 	"fmt"

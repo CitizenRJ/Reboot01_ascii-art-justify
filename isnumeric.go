@@ -1,4 +1,4 @@
-package asciiArtColor
+package asciiArtJustify
 
 // to check if it was a number or not.
 // #Q.5,pt.11.

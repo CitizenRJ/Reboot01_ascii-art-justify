@@ -1,8 +1,8 @@
-package asciiArtColor
+package asciiArtJustify
 
 import "fmt"
 
-// Print the full outcome in the triminal
+// Print the full outcome in the terminal
 func PrintBanners(banners, arr []string) {
 	num := 0
 	for _, ch := range banners {

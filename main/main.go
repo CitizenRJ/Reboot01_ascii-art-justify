@@ -229,9 +229,9 @@ func main() {
 	}
 
 	FinalArr := asciiArtJustify.PreparedArr(textPos, argsArr, arr)
-	fmt.Println(len(FinalArr))
+	// fmt.Println(len(FinalArr))
+	fmt.Println(textPos)
 	for i := 0; i < 8; i++ {
-		
         fmt.Print(FinalArr[i])
 		fmt.Print("\n")
     }
@@ -272,10 +272,18 @@ func outputFileCheck(output string) string {
 
 func ColorColorCheck(color string) string {
 	textColor := strings.TrimPrefix(color, "--color=")
+	if textColor == "" {
+		fmt.Println("Error: where's the color?.")
+		os.Exit(0)
+	}
 	return textColor
 }
 
 func CheckJustify(justify string) string {
 	textPos := strings.TrimPrefix(justify, "--align=")
+	if textPos == "" {
+		fmt.Println("Error: where's the Pose?.")
+		os.Exit(0)
+	}
 	return textPos
 }

@@ -62,25 +62,21 @@ func main() {
 				} else {
 					continue
 				}
-			} else if strings.Contains(args[i], StrFlagArr[0]) {
+			} else if strings.Contains(args[i], StrFlagArr[2]) {
 				textPos = CheckJustify(args[i])
-				if textPos == "" {
-					if i+1 < ArgsLen {
-						FlagEnd = append(FlagEnd[:num-1], FlagEnd[num:]...)
-						num = num - 1
-					} else {
-						FlagEnd = FlagEnd[:num-1]
-					}
-
-					flagCount = flagCount + 1
+				if i+1 < ArgsLen {
+					FlagEnd = append(FlagEnd[:num-1], FlagEnd[num:]...)
+					num = num - 1
 				} else {
-					textPos = ""
-					continue
+					FlagEnd = FlagEnd[:num-1]
 				}
+				flagCount = flagCount + 1
 			}
 		}
 		if flagCount == 0 {
-
+			fmt.Println("Error: Invalid arguments.")
+			fmt.Println("Usage: go run . [STRING] [BANNER]\nEX: go run . something standard\n\n# Ascii Art output #\nUsage: go run . [OPTION] [STRING] [BANNER]\nEX: go run . --output=<fileName.txt> something standard\n\n# Ascii Art color #\nUsage: go run . [OPTION] [STRING]\nEX: go run . --color=<color> <letters to be colored> \"something\"")
+			return
 		}
 	} else if ArgsLen > 2 && ArgsLen < 7 {
 		num := 0
@@ -129,21 +125,15 @@ func main() {
 					}
 				}
 				flagCount = flagCount + 1
-			} else if strings.Contains(args[i], StrFlagArr[0]) {
+			} else if strings.Contains(args[i], StrFlagArr[2]) {
 				textPos = CheckJustify(args[i])
-				if textPos == "" {
-					if i+1 < ArgsLen {
-						FlagEnd = append(FlagEnd[:num-1], FlagEnd[num:]...)
-						num = num - 1
-					} else {
-						FlagEnd = FlagEnd[:num-1]
-					}
-
-					flagCount = flagCount + 1
+				if i+1 < ArgsLen {
+					FlagEnd = append(FlagEnd[:num-1], FlagEnd[num:]...)
+					num = num - 1
 				} else {
-					textPos = ""
-					continue
+					FlagEnd = FlagEnd[:num-1]
 				}
+				flagCount = flagCount + 1
 			}
 		}
 		if flagCount == 0 {
@@ -238,6 +228,14 @@ func main() {
 		}
 	}
 
+	FinalArr := asciiArtJustify.PreparedArr(textPos, argsArr, arr)
+	fmt.Println(len(FinalArr))
+	for i := 0; i < 8; i++ {
+		
+        fmt.Print(FinalArr[i])
+		fmt.Print("\n")
+    }
+	// fmt.Println(FinalArr)
 	if outputFile != "" {
 		asciiArtJustify.PrintBannersInFile(outputFile, argsArr, arr)
 	} else if ColorColor != "" {

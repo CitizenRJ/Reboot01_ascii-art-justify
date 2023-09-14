@@ -3,7 +3,7 @@ package asciiArtJustify
 import "fmt"
 
 // Print the full outcome in the terminal
-func PrintBanners(banners, arr []string) {
+func PrintBanners(banners []string) {
 	num := 0
 	for _, ch := range banners {
 		num = num + 1
@@ -15,13 +15,7 @@ func PrintBanners(banners, arr []string) {
 				continue
 			}
 		}
-		for i := 0; i < 8; i++ {
-			for _, j := range ch {
-				n := (j-32)*9 + 1
-				fmt.Print(arr[int(n)+i])
-
-			}
-			fmt.Println()
-		}
+		fmt.Print(ch)
+		fmt.Println()
 	}
 }

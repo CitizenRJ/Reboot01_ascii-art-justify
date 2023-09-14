@@ -7,7 +7,7 @@ import (
 )
 
 // Print the full outcome in a file.
-func PrintBannersInFile(outputFileName string, banners, arr []string) {
+func PrintBannersInFile(outputFileName string, banners []string) {
 	num := 0
 	file, errs := os.Create(outputFileName)
 	if errs != nil {
@@ -27,13 +27,8 @@ func PrintBannersInFile(outputFileName string, banners, arr []string) {
 				continue
 			}
 		}
-		for i := 0; i < 8; i++ {
-			for _, j := range ch {
-				n := (j-32)*9 + 1
-				fmt.Fprint(writer, arr[int(n)+i])
-			}
-			fmt.Fprintln(writer, "")
-		}
+		fmt.Fprint(writer, ch)
+		fmt.Fprintln(writer, "")
 	}
 	writer.Flush()
 	fmt.Println("Wrote to file: " + outputFileName + ".")

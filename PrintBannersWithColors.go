@@ -6,7 +6,7 @@ import (
 )
 
 // Print the full outcome in the terminal
-func PrintBannersWithColors(Str, colors string, banners, arr []string) {
+func PrintBannersWithColors(Str, colors string, banners []string) {
 	// fmt.Println(banners[9])
 	colors = strings.ToLower(colors)
 	num := 0
@@ -44,45 +44,40 @@ func PrintBannersWithColors(Str, colors string, banners, arr []string) {
 				continue
 			}
 		}
-		for i := 0; i < 8; i++ {
-			if Str == "" {
-				for _, j := range ch {
-					n := (j-32)*9 + 1
-					fmt.Print(colors, arr[int(n)+i])
+		if Str == "" {
+			for _, j := range ch {
+				fmt.Print(colors, j)
+			}
+		} else {
+			h := 0
+			count := 0
+			match := false
+			for _, j := range ch {
+				if !match || count >= len(Str) {
+					h = h + 1
 				}
-			} else {
-				h := 0
-				count := 0
-				match := false
-				for _, j := range ch {
-					if !match || count >= len(Str) {
-						h = h + 1
-					}
-
-					check := true
-					n := (j-32)*9 + 1
-					for q := 0; q < len(Str); q++ {
-						if rune(Str[q]) == j {
-							word := ch
-							if count < len(Str) {
-								if Str == word[h-1:h+len(Str)-1] || (match && count < len(Str)) {
-									match = true
-									count = count + 1
-									// if {
-									fmt.Print(colors, arr[int(n)+i])
-									check = false
-								}
-								break
+				check := true
+				for q := 0; q < len(Str); q++ {
+					if rune(Str[q]) == j {
+						word := ch
+						if count < len(Str) {
+							if Str == word[h-1:h+len(Str)-1] || (match && count < len(Str)) {
+								match = true
+								count = count + 1
+								// if {
+								fmt.Print(colors, ch[h-1+q])
+								check = false
 							}
+							break
 						}
 					}
-					if check == true {
-						fmt.Print("\033[0m", arr[int(n)+i])
-					}
 				}
-				count = 0
+				if check == true {
+					fmt.Print("\033[0m", ch)
+				}
 			}
-			fmt.Println("\033[0m")
+			count = 0
 		}
+		fmt.Println("\033[0m")
 	}
 }

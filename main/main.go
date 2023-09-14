@@ -86,8 +86,8 @@ func main() {
 		flagCount := 0
 		
 		for i := 0; i < ArgsLen; i++ {
-			fmt.Println(args)
-			fmt.Println(i, args[i])
+			// fmt.Println(args)
+			// fmt.Println(i, args[i])
 			num = num + 1
 			if strings.Contains(args[i], StrFlagArr[0]) {
 				if ColorColor == "" {
@@ -102,7 +102,7 @@ func main() {
 					continue
 				}
 				flagCount = (flagCount + 1)
-				fmt.Println(args)
+				// fmt.Println(args)
 			} else if strings.Contains(args[i], StrFlagArr[1]) {
 				ColorColor = ColorColorCheck(args[i])
 				if outputFile == "" {
@@ -139,7 +139,7 @@ func main() {
 				flagCount = flagCount + 1
 				// ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 			} else if strings.Contains(args[i], StrFlagArr[2]) {
-				fmt.Println(5)
+				// fmt.Println(5)
 				textPos = CheckJustify(args[i])
 				
 				if i+1 < ArgsLen {
@@ -164,7 +164,7 @@ func main() {
 		return
 	}
 	ArgsLen = len(FlagEnd)
-	fmt.Println(FlagEnd)
+	// fmt.Println(FlagEnd)
 	if ArgsLen == 0 && Str != "" {
 		FlagEnd = append(FlagEnd, Str)
 		FlagEnd = append(FlagEnd, "standard")

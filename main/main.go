@@ -14,6 +14,7 @@ const (
 )
 
 func main() {
+	var FlagEnd []string
 	args := os.Args[1:]
 	ArgsLen := len(args)
 	font := "standard"
@@ -23,12 +24,13 @@ func main() {
 	textPos := ""
 	text := ""
 	Str := ""
-	FlagEnd := os.Args[1:]
-
+	FlagEnd = append(os.Args[1:],"")
+	FlagEnd = append(FlagEnd[:len(FlagEnd)-1])
 	if ArgsLen < 1 {
 		fmt.Println(len(os.Args), "is Not a valid amount of arguments.\n")
 		fmt.Println("Usage: go run . [STRING] [BANNER]\nEX: go run . something standard\n\n# Ascii Art output #\nUsage: go run . [OPTION] [STRING] [BANNER]\nEX: go run . --output=<fileName.txt> something standard\n\n# Ascii Art color #\nUsage: go run . [OPTION] [STRING]\nEX: go run . --color=<color> <letters to be colored> \"something\" . \n--align")
 		return
+		// ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	} else if ArgsLen > 0 && ArgsLen < 3 {
 		num := 0
 		flagCount := 0
@@ -78,10 +80,14 @@ func main() {
 			fmt.Println("Usage: go run . [STRING] [BANNER]\nEX: go run . something standard\n\n# Ascii Art output #\nUsage: go run . [OPTION] [STRING] [BANNER]\nEX: go run . --output=<fileName.txt> something standard\n\n# Ascii Art color #\nUsage: go run . [OPTION] [STRING]\nEX: go run . --color=<color> <letters to be colored> \"something\"")
 			return
 		}
+		// ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	} else if ArgsLen > 2 && ArgsLen < 7 {
 		num := 0
 		flagCount := 0
+		
 		for i := 0; i < ArgsLen; i++ {
+			fmt.Println(args)
+			fmt.Println(i, args[i])
 			num = num + 1
 			if strings.Contains(args[i], StrFlagArr[0]) {
 				if ColorColor == "" {
@@ -96,6 +102,7 @@ func main() {
 					continue
 				}
 				flagCount = (flagCount + 1)
+				fmt.Println(args)
 			} else if strings.Contains(args[i], StrFlagArr[1]) {
 				ColorColor = ColorColorCheck(args[i])
 				if outputFile == "" {
@@ -116,19 +123,28 @@ func main() {
 					}
 					num = num - 1
 				} else if i+1 < ArgsLen {
-					Str = args[i+1]
+					if strings.Contains(args[i+1], StrFlagArr[2]) {
+						continue
+					} else {
+						Str = args[i+1]
 					if i+2 < ArgsLen {
 						FlagEnd = append(FlagEnd[:num], FlagEnd[num+2:]...)
 						num = num - 2
 					} else {
 						FlagEnd = FlagEnd[:num+1]
 					}
+					}
+					
 				}
 				flagCount = flagCount + 1
+				// ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 			} else if strings.Contains(args[i], StrFlagArr[2]) {
+				fmt.Println(5)
 				textPos = CheckJustify(args[i])
+				
 				if i+1 < ArgsLen {
 					FlagEnd = append(FlagEnd[:num-1], FlagEnd[num:]...)
+					
 					num = num - 1
 				} else {
 					FlagEnd = FlagEnd[:num-1]
@@ -141,12 +157,14 @@ func main() {
 			fmt.Println("Usage: go run . [STRING] [BANNER]\nEX: go run . something standard\n\n# Ascii Art output #\nUsage: go run . [OPTION] [STRING] [BANNER]\nEX: go run . --output=<fileName.txt> something standard\n\n# Ascii Art color #\nUsage: go run . [OPTION] [STRING]\nEX: go run . --color=<color> <letters to be colored> \"something\"")
 			return
 		}
+		// ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	} else if ArgsLen > 6 {
 		fmt.Println("Error: Invalid arguments.")
 		fmt.Println("Usage: go run . [STRING] [BANNER]\nEX: go run . something standard\n\n# Ascii Art output #\nUsage: go run . [OPTION] [STRING] [BANNER]\nEX: go run . --output=<fileName.txt> something standard\n\n# Ascii Art color #\nUsage: go run . [OPTION] [STRING]\nEX: go run . --color=<color> <letters to be colored> \"something\" . \n--align")
 		return
 	}
 	ArgsLen = len(FlagEnd)
+	fmt.Println(FlagEnd)
 	if ArgsLen == 0 && Str != "" {
 		FlagEnd = append(FlagEnd, Str)
 		FlagEnd = append(FlagEnd, "standard")
@@ -230,18 +248,18 @@ func main() {
 
 	FinalArr := asciiArtJustify.PreparedArr(textPos, argsArr, arr)
 	// fmt.Println(len(FinalArr))
-	fmt.Println(textPos)
-	for i := 0; i < 8; i++ {
-        fmt.Print(FinalArr[i])
-		fmt.Print("\n")
-    }
+	// fmt.Println(textPos)
+	// for i := 0; i < 8; i++ {
+    //     fmt.Print(FinalArr[i])
+	// 	fmt.Print("\n")
+    // }
 	// fmt.Println(FinalArr)
 	if outputFile != "" {
-		asciiArtJustify.PrintBannersInFile(outputFile, argsArr, arr)
+		asciiArtJustify.PrintBannersInFile(outputFile, FinalArr)
 	} else if ColorColor != "" {
-		asciiArtJustify.PrintBannersWithColors(Str, ColorColor, argsArr, arr)
+		asciiArtJustify.PrintBannersWithColors(Str, ColorColor, FinalArr)
 	} else {
-		asciiArtJustify.PrintBanners(argsArr, arr)
+		asciiArtJustify.PrintBanners(FinalArr)
 	}
 }
 

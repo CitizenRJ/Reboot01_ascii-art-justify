@@ -141,14 +141,18 @@ func main() {
 			} else if strings.Contains(args[i], StrFlagArr[2]) {
 				// fmt.Println(5)
 				textPos = CheckJustify(args[i])
-				
-				if i+1 < ArgsLen {
+				if Str == "" {
+					if i+1 < ArgsLen {
 					FlagEnd = append(FlagEnd[:num-1], FlagEnd[num:]...)
-					
 					num = num - 1
 				} else {
 					FlagEnd = FlagEnd[:num-1]
 				}
+				} else {
+					textPos = CheckJustify(args[i])
+					Str = ""
+				}
+				
 				flagCount = flagCount + 1
 			}
 		}
@@ -245,19 +249,15 @@ func main() {
 			argsArr = argsArr[:larg-1]
 		}
 	}
+	if ColorColor == "" {
+		FinalArr := asciiArtJustify.PreparedArr(textPos, argsArr, arr)
+	}
+	
 
-	FinalArr := asciiArtJustify.PreparedArr(textPos, argsArr, arr)
-	// fmt.Println(len(FinalArr))
-	// fmt.Println(textPos)
-	// for i := 0; i < 8; i++ {
-    //     fmt.Print(FinalArr[i])
-	// 	fmt.Print("\n")
-    // }
-	// fmt.Println(FinalArr)
 	if outputFile != "" {
 		asciiArtJustify.PrintBannersInFile(outputFile, FinalArr)
 	} else if ColorColor != "" {
-		asciiArtJustify.PrintBannersWithColors(Str, ColorColor, FinalArr)
+		asciiArtJustify.PrintBannersWithColors(Str, ColorColor, textPos, argsArr, arr)
 	} else {
 		asciiArtJustify.PrintBanners(FinalArr)
 	}

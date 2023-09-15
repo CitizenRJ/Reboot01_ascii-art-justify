@@ -3,9 +3,9 @@ package asciiArtJustify
 import (
 	// "fmt"
 	"fmt"
+	"math"
 	"os"
 	"strings"
-	"math"
 )
 
 func PreparedArr(Pose string, banners, arr []string) []string {
@@ -61,26 +61,13 @@ func PreparedArr(Pose string, banners, arr []string) []string {
 
 					// fmt.Print(cooo)
 					if (strings.Count(ch, " ")) != 0 {
-						// 	TWight = (TWight/2 - (lenlen-1)/2)
-						// } else {
-						//
-						// jjjj := 0
 						if arr[int(n)+i] == "      " {
 							TWight := TCmond(8, lenlen)
-							fmt.Println(TWight)
+							// fmt.Println(TWight)
 							if (strings.Count(ch, " ")) == 1 {
 								TWight = (TWight - lenlen) - 1
 							} else {
-								// for p := 0; p < (strings.Count(ch, " ")); p++ {
-								// 	jjjj = jjjj + (strings.Count(ch, " "))
-								// }
-								// llll := 0
-								// if jjjj%3 == 0 {
-								// 	llll = 1
-								// } else {
-								// 	llll = 2
-								// }
-								TWight = (int(math.Round(float64((TWight - lenlen) / (strings.Count(ch, " ")))))) -1
+								TWight = (int(math.Round(float64((TWight - lenlen) / (strings.Count(ch, " ")))))) - 1
 							}
 
 							// fmt.Println(TWight,(strings.Count(ch, " ")))

@@ -249,15 +249,16 @@ func main() {
 			argsArr = argsArr[:larg-1]
 		}
 	}
-	if ColorColor == "" {
-		FinalArr := asciiArtJustify.PreparedArr(textPos, argsArr, arr)
-	}
+	var FinalArr []string
+	// if ColorColor == "" {
+		FinalArr = asciiArtJustify.PreparedArr(textPos, argsArr, arr)
+	// }
 	
 
 	if outputFile != "" {
 		asciiArtJustify.PrintBannersInFile(outputFile, FinalArr)
 	} else if ColorColor != "" {
-		asciiArtJustify.PrintBannersWithColors(Str, ColorColor, textPos, argsArr, arr)
+		asciiArtJustify.PrintBannersWithColors(Str, ColorColor, textPos, argsArr, arr, FinalArr)
 	} else {
 		asciiArtJustify.PrintBanners(FinalArr)
 	}

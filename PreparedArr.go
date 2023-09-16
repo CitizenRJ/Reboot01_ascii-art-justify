@@ -37,6 +37,7 @@ func PreparedArr(Pose string, banners, arr []string) []string {
 				n := (j-32)*9 + 1
 				ForAppened = ForAppened + arr[int(n)+i]
 				if Pose == "left" || Pose == "" {
+					TCmond(8, lenlen)
 				} else if Pose == "right" {
 					TWight := TCmond(8, lenlen)
 					TWight2 = (TWight - lenlen) - 1

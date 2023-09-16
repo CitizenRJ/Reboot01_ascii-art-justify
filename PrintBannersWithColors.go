@@ -210,7 +210,7 @@ func PrintBannersWithColors(Str, colors, Pose string, banners, arr, FinalArr []s
 						if rune(Str[q]) == j {
 							word := ch
 							if count < len(Str) {
-								if len(Str) < len(word) {
+								if len(Str) <= len(word) {
 									if Str == word[h-1:h+len(Str)-1] || (match && count < len(Str)) {
 										match = true
 										count = count + 1

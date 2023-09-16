@@ -9,7 +9,6 @@ import (
 	"strings"
 )
 
-// Check for valid of characters by runes from 32 to 126
 func TCmond(hight, width int) int {
 	cmd := exec.Command("stty", "size")
 	cmd.Stdin = os.Stdin
@@ -33,10 +32,8 @@ func TCmond(hight, width int) int {
 		fmt.Println("Error: you need to make the hight of the terminal size beggier than this.")
 		os.Exit(0)
 	}
-	// fmt.Println(width, widthh)
 	if width > widthh {
 		fmt.Println("Error: you need to make the width of the terminal size beggier than this.")
-		// fmt.Println(width, widthh)
 		os.Exit(0)
 	}
 	return widthh

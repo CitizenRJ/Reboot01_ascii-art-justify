@@ -75,7 +75,7 @@ func main() {
 				flagCount = flagCount + 1
 			}
 		}
-		if flagCount == 0 {
+		if flagCount == 0 && ArgsLen > 2 {
 			fmt.Println("Error: Invalid arguments.")
 			fmt.Println("Usage: go run . [STRING] [BANNER]\nEX: go run . something standard\n\n# Ascii Art output #\nUsage: go run . [OPTION] [STRING] [BANNER]\nEX: go run . --output=<fileName.txt> something standard\n\n# Ascii Art color #\nUsage: go run . [OPTION] [STRING]\nEX: go run . --color=<color> <letters to be colored> \"something\"")
 			return
@@ -86,8 +86,6 @@ func main() {
 		flagCount := 0
 		
 		for i := 0; i < ArgsLen; i++ {
-			// fmt.Println(args)
-			// fmt.Println(i, args[i])
 			num = num + 1
 			if strings.Contains(args[i], StrFlagArr[0]) {
 				if ColorColor == "" {
@@ -139,7 +137,6 @@ func main() {
 				flagCount = flagCount + 1
 				// ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 			} else if strings.Contains(args[i], StrFlagArr[2]) {
-				// fmt.Println(5)
 				textPos = CheckJustify(args[i])
 				if Str == "" {
 					if i+1 < ArgsLen {

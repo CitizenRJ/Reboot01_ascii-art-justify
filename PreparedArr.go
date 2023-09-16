@@ -15,6 +15,7 @@ func PreparedArr(Pose string, banners, arr []string) []string {
 	num := 0
 	// counter := 0
 	// TWight := TCmond(8, len(ReturnArr[0]))
+	TWight2 := 0
 	for _, ch := range banners {
 		num = num + 1
 		if ch == "" {
@@ -42,18 +43,18 @@ func PreparedArr(Pose string, banners, arr []string) []string {
 					// ForAppened = ""
 				} else if Pose == "right" {
 					TWight := TCmond(8, lenlen)
-					TWight = (TWight - lenlen) - 1
+					TWight2 = (TWight - lenlen) - 1
 					if v == 0 {
-						for j := 0; j < TWight; j++ {
+						for j := 0; j < TWight2; j++ {
 							ForAppened = " " + ForAppened
 						}
 					}
 				} else if Pose == "center" {
 					TWight := TCmond(8, lenlen)
-					TWight = (TWight/2 - (lenlen-1)/2)
+					TWight2 = (TWight/2 - (lenlen-1)/2)
 					// fmt.Println(TWight)
 					if v == 0 {
-						for j := 0; j < TWight; j++ {
+						for j := 0; j < TWight2; j++ {
 							ForAppened = " " + ForAppened
 						}
 					}
@@ -65,22 +66,27 @@ func PreparedArr(Pose string, banners, arr []string) []string {
 							TWight := TCmond(8, lenlen)
 							// fmt.Println(TWight)
 							if (strings.Count(ch, " ")) == 1 {
-								TWight = (TWight - lenlen) - 1
+								TWight2 = (TWight - lenlen) - 1
 							} else {
-								TWight = (int(math.Round(float64((TWight - lenlen) / (strings.Count(ch, " ")))))) - 1
+								TWight2 = (int(math.Round(float64((TWight - lenlen) / (strings.Count(ch, " ")))))) - 1
 							}
+							eee := (strings.Count(ch, " "))
+							fmt.Println(eee)
+							if TWight2 <= 0 {
 
-							// fmt.Println(TWight,(strings.Count(ch, " ")))
-							ForAppened = ForAppened + strings.Repeat(" ", TWight)
+							} else {
+								ForAppened = ForAppened + strings.Repeat(" ", TWight2)
+							}
+							
 							// cooo = false
 
 						}
 					} else {
 						TWight := TCmond(8, lenlen)
-						TWight = (TWight/2 - (lenlen-1)/2)
+						TWight2 = (TWight/2 - (lenlen-1)/2)
 						// fmt.Println(TWight)
 						if v == 0 {
-							for j := 0; j < TWight; j++ {
+							for j := 0; j < TWight2; j++ {
 								ForAppened = " " + ForAppened
 							}
 						}
